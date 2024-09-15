@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<QCARInfo>
+    <TargetSet version="3.4">
+        <AreaTarget version="5.2" bbox="-18.9371 -4.8389 -8.7232 3.1672 3.2093 5.1570" area="36" targetId="bb6e5bec15b14f649ac8db04b1a58a32" name="Hallway-livingRoom" pathAuthoring="bb6e5bec15b14f649ac8db04b1a58a32_authoring.glb" pathOcclusion="bb6e5bec15b14f649ac8db04b1a58a32_occlusion.3dt" pathNavMesh="bb6e5bec15b14f649ac8db04b1a58a32_navmesh.glb" cloudTarget="false" />
+    </TargetSet>
+</QCARInfo>
