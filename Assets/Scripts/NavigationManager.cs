@@ -17,7 +17,6 @@ public class NavigationManager : MonoBehaviour
     private void Start()
     {
         navMeshPath = new UnityEngine.AI.NavMeshPath();
-
         // disable screen dimming
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
