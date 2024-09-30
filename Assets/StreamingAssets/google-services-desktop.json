@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "289408098482",
+    "project_id": "ar-nav-9d06d",
+    "storage_bucket": "ar-nav-9d06d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289408098482:android:6a80800d39e1930dbde9ab",
+        "android_client_info": {
+          "package_name": "com.code4u.CCSIT"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSqaIRFeg8FBYUpoa6AhLMWLLmzhCGLC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
