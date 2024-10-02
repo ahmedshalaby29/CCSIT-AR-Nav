@@ -59,7 +59,7 @@ public class FirebaseManager : MonoBehaviour
 {
     public static FirebaseManager Instance { get; private set; }
     public FirebaseAuth auth;
-    private FirebaseFirestore firestore;
+    public FirebaseFirestore firestore;
     public UserData currentUserData; // Store user data here
 
     void Awake()
@@ -143,4 +143,7 @@ public class FirebaseManager : MonoBehaviour
             Debug.Log("No such user data!");
         }
     }
+
+
+
 }

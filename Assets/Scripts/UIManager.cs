@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // Ensure you have this for UI components
 
 public class UIManager : MonoBehaviour
@@ -120,6 +121,7 @@ public class UIManager : MonoBehaviour
         {
             string userId = firebaseManager.auth.CurrentUser.UserId;
             await firebaseManager.StoreUserData(userId, email, "student");
+            SceneManager.LoadScene(1);
         }
     }
 
@@ -130,6 +132,7 @@ public class UIManager : MonoBehaviour
         {
             string userId = firebaseManager.auth.CurrentUser.UserId;
             await firebaseManager.GetUserData(userId);
+            SceneManager.LoadScene(1);
         }
     }
 }
