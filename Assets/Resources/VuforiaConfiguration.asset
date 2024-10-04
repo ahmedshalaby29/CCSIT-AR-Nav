@@ -44,7 +44,7 @@ MonoBehaviour:
     autoImportArcore: 1
     thirdPartyARCoreClientDetected: 0
   playmode:
-    mRecordingPath: C:/Users/ahmed/Downloads/1064to1094.mp4
+    mRecordingPath: /Users/ahmedshalaby/Documents/Unity_Projects/1064to1094.mp4
     playModeType: 2
   webcam:
     renderTextureLayer: 30
