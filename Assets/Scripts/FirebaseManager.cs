@@ -80,6 +80,7 @@ public class FirebaseManager : MonoBehaviour
     {
         auth = FirebaseAuth.DefaultInstance;
         firestore = FirebaseFirestore.DefaultInstance;
+
     }
 
     public async Task<bool> SignUp(string email, string password)
