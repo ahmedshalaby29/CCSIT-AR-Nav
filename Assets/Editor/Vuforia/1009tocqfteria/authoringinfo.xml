@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<QCARInfo>
+    <TargetSet version="3.4">
+        <AreaTarget version="5.2" bbox="-35.3290 -15.6772 -11.2132 50.0551 7.6443 27.3606" area="225" targetId="a56076dac5bb420eaed1b1f096f6a002" name="1009tocqfteria" pathAuthoring="a56076dac5bb420eaed1b1f096f6a002_authoring.glb" pathOcclusion="a56076dac5bb420eaed1b1f096f6a002_occlusion.3dt" pathNavMesh="a56076dac5bb420eaed1b1f096f6a002_navmesh.glb" cloudTarget="false" />
+    </TargetSet>
+</QCARInfo>

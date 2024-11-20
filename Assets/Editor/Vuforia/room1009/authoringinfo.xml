@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<QCARInfo>
+    <TargetSet version="3.4">
+        <AreaTarget version="5.2" bbox="4.3278 -7.2756 3.5221 45.1506 2.6539 30.1141" area="56" targetId="5321639b6dbd4074b53fa1036c12fbe4" name="room1009" pathAuthoring="5321639b6dbd4074b53fa1036c12fbe4_authoring.glb" pathOcclusion="5321639b6dbd4074b53fa1036c12fbe4_occlusion.3dt" pathNavMesh="5321639b6dbd4074b53fa1036c12fbe4_navmesh.glb" cloudTarget="false" />
+    </TargetSet>
+</QCARInfo>
