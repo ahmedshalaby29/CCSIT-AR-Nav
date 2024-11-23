@@ -11,14 +11,28 @@ public class NavigationManager : MonoBehaviour
     [SerializeField] private LineRenderer line;
     public float lineYOffset { get; set; } = 0.5f;
 
-    [SerializeField] private List<NavigationTarget> navigationTargets;
-    [SerializeField] TMP_Dropdown targetDropdown;
+    [SerializeField] public List<NavigationTarget> navigationTargets;
+    [SerializeField] public TMP_Dropdown targetDropdown;
+        [SerializeField] TMP_Dropdown addLocationsDropdown;
+
     private NavMeshPath navMeshPath;
-    [SerializeField] private NavigationTarget selectedTarget;
+    public NavigationTarget selectedTarget;
 
     NavMeshHit hit;
     Vector3 targetPosition;
+    public static NavigationManager Instance { get; private set; }
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // Ensure only one instance exists
+        }
+    }
     private void Start()
     {
         navMeshPath = new UnityEngine.AI.NavMeshPath();
@@ -35,6 +49,7 @@ public class NavigationManager : MonoBehaviour
 
         // Add options to the dropdown
         targetDropdown.AddOptions(options);
+        addLocationsDropdown.AddOptions(options);
         // Subscribe to the dropdown's onValueChanged event
         targetDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
         if(navigationTargets.Count > 0)

@@ -8,7 +8,6 @@ using UnityEngine.UI; // Ensure you have this for UI components
 
 public class UIManager : MonoBehaviour
 {
-    public FirebaseManager firebaseManager;
 
     // Sign Up Input Fields
     public TMP_InputField signUpEmailInputField; // Email input field for sign up
@@ -116,22 +115,22 @@ public class UIManager : MonoBehaviour
 
     private async Task SignUp(string email, string password)
     {
-        bool success = await firebaseManager.SignUp(email, password);
+        bool success = await FirebaseManager.Instance.SignUp(email, password);
         if (success)
         {
-            string userId = firebaseManager.auth.CurrentUser.UserId;
-            await firebaseManager.StoreUserData(userId, email, "student");
+            string userId = FirebaseManager.Instance.auth.CurrentUser.UserId;
+            await FirebaseManager.Instance.StoreUserData(userId, email, "student");
             SceneManager.LoadScene(1);
         }
     }
 
     private async Task SignIn(string email, string password)
     {
-        bool success = await firebaseManager.SignIn(email, password);
+        bool success = await FirebaseManager.Instance.SignIn(email, password);
         if (success)
         {
-            string userId = firebaseManager.auth.CurrentUser.UserId;
-            await firebaseManager.GetUserData(userId);
+            string userId = FirebaseManager.Instance.auth.CurrentUser.UserId;
+            await FirebaseManager.Instance.GetUserData(userId);
             SceneManager.LoadScene(1);
         }
     }

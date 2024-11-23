@@ -113,6 +113,7 @@ public class ChannelManager : MonoBehaviour
         else
         {
             Debug.Log("Message sent successfully.");
+            messageInputField.text = "";
             StartCoroutine(GetAllMessagesCoroutine());
 
         }

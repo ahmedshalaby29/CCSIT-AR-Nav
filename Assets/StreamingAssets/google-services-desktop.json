@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "289408098482",
+    "firebase_url": "https://ar-nav-9d06d-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "ar-nav-9d06d",
-    "storage_bucket": "ar-nav-9d06d.appspot.com"
+    "storage_bucket": "ar-nav-9d06d.firebasestorage.app"
   },
   "client": [
     {
