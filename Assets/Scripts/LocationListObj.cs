@@ -11,7 +11,9 @@ public class LocationListObj : MonoBehaviour
    public void OnDeleteButtonClick(){
          SavedLocationManager.Instance.OnDeleteListButton(locationTitle.text);
     }
-
+     public void OnEditListClick(){
+          SavedLocationManager.Instance.OnEditLocationListButton(locationTitle.text);
+     }
     public void OnOpenListClick(){
          SavedLocationManager.Instance.OnOpenLocationListClick(locationTitle.text);
     }

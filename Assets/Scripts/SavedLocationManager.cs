@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class SavedLocationManager : MonoBehaviour
 {        
-
+        public GameObject editListPanelObj;
         public GameObject backButtonObj;
         public GameObject closeButtonObj;
     public GameObject savedListsObj;
@@ -16,12 +16,14 @@ public class SavedLocationManager : MonoBehaviour
     public GameObject locationPrefab; // Prefab for displaying individual locations
     public Transform listsParent; // Parent object to hold location list prefabs
     public Transform locationsParent; // Parent object to hold location prefabs
-
+    public TMP_InputField editedListTitleInput; // Input field for new list title
+    public TextMeshProUGUI selectedListTitleTxt;
     public TMP_InputField newListTitleInput; // Input field for new list title
     public TMP_Dropdown newLocationDropdown; // Input field for new location name
     public static SavedLocationManager Instance { get; private set; }
     public string selectedListTitle;
     private string currentUserId;
+    private string listToEdit;
 
     void Awake()
     {
@@ -76,6 +78,7 @@ public class SavedLocationManager : MonoBehaviour
 
     public void OnOpenLocationListClick(string listTitle){
         selectedListTitle = listTitle;
+        selectedListTitleTxt.text = listTitle;
         PopulateLocations(listTitle);
         savedListsObj.SetActive(false);
         savedLocationsObj.SetActive(true);
@@ -178,4 +181,27 @@ public class SavedLocationManager : MonoBehaviour
 
         Debug.Log($"Locations for '{listTitle}' populated.");
     }
+
+        public void OnEditLocationListButton(string oldListTitle)
+        {
+            editListPanelObj.SetActive(true);
+            listToEdit = oldListTitle;
+        }
+         public void OnEditListButtonConfirm()
+        {
+            StartCoroutine(EditLocationListName(listToEdit,editedListTitleInput.text));
+            editListPanelObj.SetActive(false);
+            
+        }
+
+
+
+        private IEnumerator EditLocationListName(string oldListTitle, string newListTitle)
+        {
+            // Call FirebaseManager to update the list title
+            yield return FirebaseManager.Instance.EditLocationListName(currentUserId, oldListTitle, newListTitle);
+            
+            // Refresh the list UI
+            PopulateLocationLists();
+        }
 }

@@ -8,7 +8,7 @@ using UnityEngine.UI; // Ensure you have this for UI components
 
 public class UIManager : MonoBehaviour
 {
-
+    public GameObject loadingPanel;
     // Sign Up Input Fields
     public TMP_InputField signUpEmailInputField; // Email input field for sign up
     public TMP_InputField signUpPasswordInputField; // Password input field for sign up
@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator SignUpCoroutine()
     {
+        loadingPanel.SetActive(true);
         signUpErrorMessageText.text = "";
 
         string email = signUpEmailInputField.text;
@@ -45,6 +46,8 @@ public class UIManager : MonoBehaviour
         if (!string.IsNullOrEmpty(validationError))
         {
             DisplaySignUpError(validationError);
+            loadingPanel.SetActive(false);
+
             yield break; // Exit the coroutine
         }
 
@@ -55,10 +58,12 @@ public class UIManager : MonoBehaviour
         {
             DisplaySignUpError("Sign Up failed: " + task.Exception?.Message);
         }
+        loadingPanel.SetActive(false);
     }
 
     private IEnumerator SignInCoroutine()
     {
+        loadingPanel.SetActive(true);
         signInErrorMessageText.text = "";
         string email = signInEmailInputField.text;
         string password = signInPasswordInputField.text;
@@ -67,6 +72,7 @@ public class UIManager : MonoBehaviour
         if (!string.IsNullOrEmpty(validationError))
         {
             DisplaySignInError(validationError);
+            loadingPanel.SetActive(false);
             yield break; // Exit the coroutine
         }
 
@@ -76,7 +82,9 @@ public class UIManager : MonoBehaviour
         if (task.IsFaulted)
         {
             DisplaySignInError("Sign In failed: " + task.Exception?.Message);
+            
         }
+        loadingPanel.SetActive(false);
     }
 
     private string ValidateSignUpInputs(string email, string password, string confirmPassword)
