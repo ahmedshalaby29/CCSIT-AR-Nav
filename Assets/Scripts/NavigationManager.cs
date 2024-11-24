@@ -7,12 +7,18 @@ using UnityEngine.AI;
 
 public class NavigationManager : MonoBehaviour
 {
+    [SerializeField] private GameObject navigationPanel;
+
     [SerializeField] private Transform player;
+     [SerializeField] private NavMeshAgent navMeshAgent;
+
     [SerializeField] private LineRenderer line;
     public float lineYOffset { get; set; } = 0.5f;
 
     [SerializeField] public List<NavigationTarget> navigationTargets;
     [SerializeField] public TMP_Dropdown targetDropdown;
+      [SerializeField] public TMP_Dropdown currentLocationDropdown;
+
         [SerializeField] TMP_Dropdown addLocationsDropdown;
 
     private NavMeshPath navMeshPath;
@@ -50,49 +56,80 @@ public class NavigationManager : MonoBehaviour
         // Add options to the dropdown
         targetDropdown.AddOptions(options);
         addLocationsDropdown.AddOptions(options);
-        // Subscribe to the dropdown's onValueChanged event
-        targetDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
-        if(navigationTargets.Count > 0)
-        {
-            selectedTarget = navigationTargets[0];
-
-        }
+        currentLocationDropdown.AddOptions(options);
+     
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
 
 
-
-    private void Update()
+private void Update()
+{
+    // Continuously sync the NavMeshAgent with the AR Camera's position
+    if (NavMesh.SamplePosition(Camera.main.transform.position, out hit, 10.0f, NavMesh.AllAreas))
     {
-        if (selectedTarget != null)
-        {
-            NavMesh.SamplePosition(selectedTarget.transform.position, out hit, 1.0f, NavMesh.AllAreas);
-                targetPosition = hit.position; 
-                                               
-            NavMesh.CalculatePath(player.position, targetPosition, NavMesh.AllAreas, navMeshPath);
-           
-            if (navMeshPath.status == NavMeshPathStatus.PathComplete)
-            {
-                line.positionCount = navMeshPath.corners.Length;
+        // If the camera's position is valid on the NavMesh, move the agent
+        navMeshAgent.Warp(hit.position);
+    }
+    else
+    {
+        Debug.LogWarning("Camera moved outside the NavMesh area.");
+    }
 
-                for (int i = 0; i < navMeshPath.corners.Length; i++)
-                {
-                    navMeshPath.corners[i].y += lineYOffset;
-                }
-                
-                line.SetPositions(navMeshPath.corners);
-            }
-            else
+    // Continue drawing the path if a valid target is selected
+    if (selectedTarget != null)
+    {
+        targetPosition = selectedTarget.transform.position;
+
+        // Calculate the path
+        NavMesh.CalculatePath(navMeshAgent.transform.position, targetPosition, NavMesh.AllAreas, navMeshPath);
+
+        if (navMeshPath.status == NavMeshPathStatus.PathComplete)
+        {
+            line.positionCount = navMeshPath.corners.Length;
+
+            // Adjust the line's Y-offset and set positions
+            for (int i = 0; i < navMeshPath.corners.Length; i++)
             {
-                line.positionCount = 0;
+                navMeshPath.corners[i].y += lineYOffset;
             }
+
+            line.SetPositions(navMeshPath.corners);
+        }
+        else
+        {
+            line.positionCount = 0;
         }
     }
+}
 
-    void OnDropdownValueChanged(int index)
+
+   
+  public void OnNavigateClick()
+{
+    // Set the selected target based on the dropdown value
+    selectedTarget = navigationTargets[targetDropdown.value];
+
+    // Get the current location based on the user's dropdown selection
+    NavigationTarget currentLocation = navigationTargets[currentLocationDropdown.value];
+
+    // Move the NavMeshAgent and AR Camera to the selected current location
+    if (NavMesh.SamplePosition(currentLocation.transform.position, out hit, 10.0f, NavMesh.AllAreas))
     {
-        selectedTarget = navigationTargets[index];
+        navMeshAgent.Warp(hit.position); // Warp the NavMeshAgent
+        player.position = hit.position;  // Align the AR Camera's position
+        player.rotation = currentLocation.transform.rotation; // Align rotation if needed
+
+        Debug.Log($"Moved player to: {currentLocation.transform.position}");
     }
+    else
+    {
+        Debug.LogError("Selected location is outside the NavMesh area.");
+    }
+
+    // Hide the navigation panel
+    navigationPanel.SetActive(false);
+}
+
 
 }

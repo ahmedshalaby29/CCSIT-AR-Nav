@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: AWgUHTL/////AAABmW5Xl8rc40lvkYQ4u5PUhrZb60ezN7T51z5IXZ9nco92tjouz+QOpUzUWWf1i+cY2Yda1GdjKcfp3Ilfyn412DTaxTDwdePi3fxDBsPRHmnBETuYh2okx6S50MXxhFpUpqkr8O8YCuWp2+3UV/koKSm/BxqRKj7u0ikTvgLIO6RGA2ldTyC0LnKLvP48wt2fgCRRIHVUk+2foigocWNjdM1PznnC/BJ3OAwGKJ8FDC17xgrQtPVxP1xa8tqqWEqDKhGAmwhhatXC+ZVEhZDuSmkzZ+AqnRwPgPhArft8TM3GjDP0deV36dKyrK2D2ZGMzlkdJTgdO6Is/W2lX/ap9ji1nAdC4Pn88wkWZULzmIs+
+    vuforiaLicenseKey: 
     ufoLicenseKey: QVJ5dEN5TC8vLy8vQUFBQUtEZ1JGT2NNZmtWbmdRKy9wM2dabDdBcFlBNDhqdWpVQW9Xc2RvQUw5N0h4ZFpmZGhDRURmUlN1UnY4SVlNUGZFYUk4c29GNS9MamR3cGFkUTExakY3SUxoenZvN0VHZ0FGaHFwZGNwYU5idHJLYlNJNXBNbXl4SHk2N2QvWEUzQUNYSGpvY3FUS3pzZjdEYnBLZGZDK0x4MkNlcVpZRnpzaUhzVDRBY2lPN2h1c2gyL3B4SS90VGhabWprSVJ3VjYxQjNTYU5Gb2hXNTRLY3ZPN1VyUzJLeEpnU3IvS2tIT1VYeTBtbjZGR2NRdHNNdEswOCt0NStKdlJHVnU1NWlMa3I2a3hwVWQvSzRNSnlPNHFaK2Q1elVjU0h4WlgwNFgwUk1nTTErWGpjMS9kd3FuRlo1bkhsVkIwOVVvYjdsOTN4Qk5SVWJEUGJKRlAxbDdoaTczSXEzSlVsUXNOZDNnREMxZzJDOFBJUnM=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
@@ -45,7 +45,7 @@ MonoBehaviour:
     thirdPartyARCoreClientDetected: 0
   playmode:
     mRecordingPath: /Users/ahmedshalaby/Documents/Unity_Projects/1064to1094.mp4
-    playModeType: 1
+    playModeType: 2
   webcam:
     renderTextureLayer: 30
   packageInformation:
