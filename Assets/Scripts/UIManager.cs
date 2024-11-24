@@ -140,6 +140,9 @@ public class UIManager : MonoBehaviour
             string userId = FirebaseManager.Instance.auth.CurrentUser.UserId;
             await FirebaseManager.Instance.GetUserData(userId);
             SceneManager.LoadScene(1);
+        }else{
+            DisplaySignInError("Incorrect login information!");
+
         }
     }
 }

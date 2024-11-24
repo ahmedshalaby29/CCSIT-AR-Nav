@@ -432,48 +432,54 @@ public async Task GetUserData(string userId)
             Debug.LogError($"Logout failed: {ex.Message}");
         }
     }
-
     public IEnumerator EditLocationListName(string userId, string oldListTitle, string newListTitle)
-{
-    var userDocRef = firestore.Collection("users").Document(userId);
-
-    // Get the user data
-    var userSnapshotTask = userDocRef.GetSnapshotAsync();
-    yield return new WaitUntil(() => userSnapshotTask.IsCompleted);
-
-    if (!userSnapshotTask.Result.Exists)
     {
-        Debug.LogError("User document not found!");
-        yield break;
+        var userDocRef = firestore.Collection("users").Document(userId);
+
+        // Get the user data
+        var userSnapshotTask = userDocRef.GetSnapshotAsync();
+        yield return new WaitUntil(() => userSnapshotTask.IsCompleted);
+
+        if (!userSnapshotTask.Result.Exists)
+        {
+            Debug.LogError("User document not found!");
+            yield break;
+        }
+
+        var locationLists = currentUserData.savedLocationLists;
+
+        // Find the list to edit
+        var listToEdit = locationLists.Find(list => list.title == oldListTitle);
+        if (listToEdit == null)
+        {
+            Debug.LogWarning($"List '{oldListTitle}' not found.");
+            yield break;
+        }
+
+        // Update the title
+        listToEdit.title = newListTitle;
+
+        // Convert currentUserData to a dictionary format before saving
+        Dictionary<string, object> userData = new Dictionary<string, object>
+        {
+            { "email", currentUserData.email },
+            { "accountType", currentUserData.accountType },
+            { "savedLocationLists", ConvertToFirestoreFormat(currentUserData.savedLocationLists) }
+        };
+
+        // Update Firestore with the new data
+        var updateTask = userDocRef.SetAsync(userData);
+        yield return new WaitUntil(() => updateTask.IsCompleted);
+
+        if (updateTask.Exception != null)
+        {
+            Debug.LogError("Failed to update list title: " + updateTask.Exception.Message);
+        }
+        else
+        {
+            Debug.Log($"List title updated from '{oldListTitle}' to '{newListTitle}'.");
+        }
     }
-
-    var userData = userSnapshotTask.Result.ConvertTo<UserData>();
-    var locationLists = userData.savedLocationLists;
-
-    // Find the list to edit
-    var listToEdit = locationLists.Find(list => list.title == oldListTitle);
-    if (listToEdit == null)
-    {
-        Debug.LogWarning($"List '{oldListTitle}' not found.");
-        yield break;
-    }
-
-    // Update the title
-    listToEdit.title = newListTitle;
-
-    // Update Firestore
-    var updateTask = userDocRef.SetAsync(userData);
-    yield return new WaitUntil(() => updateTask.IsCompleted);
-
-    if (updateTask.Exception != null)
-    {
-        Debug.LogError("Failed to update list title: " + updateTask.Exception.Message);
-    }
-    else
-    {
-        Debug.Log($"List title updated from '{oldListTitle}' to '{newListTitle}'.");
-    }
-}
 
 
 
