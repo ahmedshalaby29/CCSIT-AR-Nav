@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: 
+    vuforiaLicenseKey: AWgUHTL/////AAABmW5Xl8rc40lvkYQ4u5PUhrZb60ezN7T51z5IXZ9nco92tjouz+QOpUzUWWf1i+cY2Yda1GdjKcfp3Ilfyn412DTaxTDwdePi3fxDBsPRHmnBETuYh2okx6S50MXxhFpUpqkr8O8YCuWp2+3UV/koKSm/BxqRKj7u0ikTvgLIO6RGA2ldTyC0LnKLvP48wt2fgCRRIHVUk+2foigocWNjdM1PznnC/BJ3OAwGKJ8FDC17xgrQtPVxP1xa8tqqWEqDKhGAmwhhatXC+ZVEhZDuSmkzZ+AqnRwPgPhArft8TM3GjDP0deV36dKyrK2D2ZGMzlkdJTgdO6Is/W2lX/ap9ji1nAdC4Pn88wkWZULzmIs+
     ufoLicenseKey: QVJ5dEN5TC8vLy8vQUFBQUtEZ1JGT2NNZmtWbmdRKy9wM2dabDdBcFlBNDhqdWpVQW9Xc2RvQUw5N0h4ZFpmZGhDRURmUlN1UnY4SVlNUGZFYUk4c29GNS9MamR3cGFkUTExakY3SUxoenZvN0VHZ0FGaHFwZGNwYU5idHJLYlNJNXBNbXl4SHk2N2QvWEUzQUNYSGpvY3FUS3pzZjdEYnBLZGZDK0x4MkNlcVpZRnpzaUhzVDRBY2lPN2h1c2gyL3B4SS90VGhabWprSVJ3VjYxQjNTYU5Gb2hXNTRLY3ZPN1VyUzJLeEpnU3IvS2tIT1VYeTBtbjZGR2NRdHNNdEswOCt0NStKdlJHVnU1NWlMa3I2a3hwVWQvSzRNSnlPNHFaK2Q1elVjU0h4WlgwNFgwUk1nTTErWGpjMS9kd3FuRlo1bkhsVkIwOVVvYjdsOTN4Qk5SVWJEUGJKRlAxbDdoaTczSXEzSlVsUXNOZDNnREMxZzJDOFBJUnM=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
@@ -23,8 +23,8 @@ MonoBehaviour:
     modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 1
     logLevel: 0
-    version: 10.27.3
-    eulaAcceptedVersions: '{"Values":["0.0","9.4","9.5","9.6","10.5","10.3","10.6","10.7","10.10","10.11","10.12","10.13","10.14","10.15","10.16","10.17","10.18","10.20","10.21","10.25","10.27"]}'
+    version: 10.28.4
+    eulaAcceptedVersions: '{"Values":["0.0","9.4","9.5","9.6","10.5","10.3","10.6","10.7","10.10","10.11","10.12","10.13","10.14","10.15","10.16","10.17","10.18","10.20","10.21","10.25","10.27","10.28","10.19","8.0","7.5","7.2","8.1","7.1","7.7","7.9","8.3","8.5","8.6","10.22"]}'
   database:
     disableModelExtraction: 0
   shaders:
@@ -49,4 +49,4 @@ MonoBehaviour:
   webcam:
     renderTextureLayer: 30
   packageInformation:
-    ARFoundationVersion: 
+    ARFoundationVersion: 5.1.5

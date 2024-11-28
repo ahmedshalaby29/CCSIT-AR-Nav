@@ -9,7 +9,9 @@ public class NavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject navigationPanel;
 
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform worldPosition;
+        [SerializeField] private Transform arCamera;
+
      [SerializeField] private NavMeshAgent navMeshAgent;
 
     [SerializeField] private LineRenderer line;
@@ -103,33 +105,36 @@ private void Update()
     }
 }
 
-
-   
-  public void OnNavigateClick()
-{
-    // Set the selected target based on the dropdown value
-    selectedTarget = navigationTargets[targetDropdown.value];
-
-    // Get the current location based on the user's dropdown selection
-    NavigationTarget currentLocation = navigationTargets[currentLocationDropdown.value];
-
-    // Move the NavMeshAgent and AR Camera to the selected current location
-    if (NavMesh.SamplePosition(currentLocation.transform.position, out hit, 10.0f, NavMesh.AllAreas))
+ public void OnNavigateClick()
     {
-        navMeshAgent.Warp(hit.position); // Warp the NavMeshAgent
-        player.position = hit.position;  // Align the AR Camera's position
-        player.rotation = currentLocation.transform.rotation; // Align rotation if needed
+        // Set the selected target based on the dropdown value
+        selectedTarget = navigationTargets[targetDropdown.value];
+        // Get the current location based on the user's dropdown selection
+        NavigationTarget currentLocation = navigationTargets[currentLocationDropdown.value];
 
-        Debug.Log($"Moved player to: {currentLocation.transform.position}");
-    }
-    else
-    {
-        Debug.LogError("Selected location is outside the NavMesh area.");
+        if (selectedTarget == null)
+        {
+            Debug.LogError("Selected target is null.");
+            return;
+        }
+
+        // Reposition the world to align the selected target with the AR Camera
+        RepositionWorld(currentLocation.transform);
+
+        // Hide the navigation panel
+        navigationPanel.SetActive(false);
     }
 
-    // Hide the navigation panel
-    navigationPanel.SetActive(false);
-}
+    private void RepositionWorld(Transform selectedTarget)
+    {
+        // Calculate the offset between the ARCamera and the selected target
+        Vector3 offset = arCamera.position - selectedTarget.position;
+
+        // Apply the offset to the world (move the entire parent)
+        worldPosition.position += offset;
+
+        Debug.Log($"World repositioned to align {selectedTarget.name} with AR Camera.");
+    }
 
 
 }

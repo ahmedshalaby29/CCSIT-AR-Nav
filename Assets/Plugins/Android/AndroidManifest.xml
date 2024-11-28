@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.code4u.CCSIT" android:versionCode="1" android:versionName="1.0">
   <application android:label="@string/app_name" android:icon="@drawable/app_icon">
+   <!-- ARCore requirement -->
+    <meta-data
+        android:name="com.google.ar.core"
+        android:value="required" />
+        
     <!-- The MessagingUnityPlayerActivity is a class that extends
          UnityPlayerActivity to work around a known issue when receiving
          notification data payloads in the background. -->
@@ -11,7 +16,7 @@
       </intent-filter>
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
     </activity>
-    <service android:name="com.google.firebase.messaging.MessageForwardingService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true"
+      <service android:name="com.google.firebase.messaging.MessageForwardingService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true"
 ></service>
   </application>
 </manifest>
