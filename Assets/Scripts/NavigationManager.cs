@@ -9,8 +9,6 @@ public class NavigationManager : MonoBehaviour
 {
     [SerializeField] private GameObject navigationPanel;
 
-    [SerializeField] private Transform worldPosition;
-        [SerializeField] private Transform arCamera;
 
      [SerializeField] private NavMeshAgent navMeshAgent;
 
@@ -110,7 +108,7 @@ private void Update()
         // Set the selected target based on the dropdown value
         selectedTarget = navigationTargets[targetDropdown.value];
         // Get the current location based on the user's dropdown selection
-        NavigationTarget currentLocation = navigationTargets[currentLocationDropdown.value];
+        
 
         if (selectedTarget == null)
         {
@@ -118,23 +116,11 @@ private void Update()
             return;
         }
 
-        // Reposition the world to align the selected target with the AR Camera
-        RepositionWorld(currentLocation.transform);
-
+      
         // Hide the navigation panel
         navigationPanel.SetActive(false);
     }
 
-    private void RepositionWorld(Transform selectedTarget)
-    {
-        // Calculate the offset between the ARCamera and the selected target
-        Vector3 offset = arCamera.position - selectedTarget.position;
-
-        // Apply the offset to the world (move the entire parent)
-        worldPosition.position += offset;
-
-        Debug.Log($"World repositioned to align {selectedTarget.name} with AR Camera.");
-    }
 
 
 }
